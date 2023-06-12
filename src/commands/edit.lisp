@@ -195,11 +195,12 @@
 
 (define-command kill-whole-line () ()
   "Kill the entire line and the remaining whitespace"
-   (with-point ((start (current-point))
-                (end (current-point)))
-     (line-end end)
-     (kill-region start end))
-   (delete-previous-char))
+  (with-point ((start (current-point))
+               (end (current-point)))
+    (line-start start)
+    (line-end end)
+    (kill-region start end))
+  (delete-previous-char))
 
 (defun yank-1 (arg)
   (let ((string (if (null arg)
